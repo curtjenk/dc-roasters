@@ -3,8 +3,6 @@ coffeeApp.config(function($routeProvider) {
         controller: 'homeController',
         templateUrl: function($routeParams) {
             console.log("routing to home");
-            $('.home-nav').css('display', 'block');
-            $('.order-nav').css('display', 'none');
             return 'app/components/home/homeView.html';
         }
     });
@@ -12,8 +10,6 @@ coffeeApp.config(function($routeProvider) {
         controller: 'registerController',
         templateUrl: function($routeParams) {
             console.log("routing to register");
-            $('.home-nav').css('display', 'none');
-            $('.order-nav').css('display', 'none');
             return 'app/components/register/registerView.html';
         }
     });
@@ -21,8 +17,6 @@ coffeeApp.config(function($routeProvider) {
         controller: 'loginController',
         templateUrl: function($routeParams) {
             console.log("routing to login");
-            $('.home-nav').css('display', 'none');
-            $('.order-nav').css('display', 'none');
             return 'app/components/login/loginView.html';
         }
     });
@@ -30,8 +24,6 @@ coffeeApp.config(function($routeProvider) {
         controller: 'optionsController',
         templateUrl: function($routeParams) {
             console.log("routing to order");
-            $('.home-nav').css('display', 'none');
-            $('.order-nav').css('display', 'block');
             return 'app/components/options/optionsView.html';
         }
     });
@@ -39,8 +31,6 @@ coffeeApp.config(function($routeProvider) {
         controller: 'deliveryController',
         templateUrl: function($routeParams) {
             console.log("routing to order");
-            $('.home-nav').css('display', 'none');
-            $('.order-nav').css('display', 'block');
             return 'app/components/delivery/deliveryView.html';
         }
     });

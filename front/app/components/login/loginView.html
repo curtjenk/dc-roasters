@@ -7,10 +7,10 @@
         </div>
       </div>
       <div class="row">
+		<h5 class="pwd-error text-center">{{loginMessage}}</h5>
+	</div>
+      <div class="row">
         <div class="col-sm-6 col-sm-offset-3 login-wrapper text-center">
-          <p class="pwd-error">
-            {{loginMessage}}
-          </p>
           <form role="form" ng-submit="loginFunc()" id="login-form" name="login">
             <div class="form-group">
               <label>Username</label>

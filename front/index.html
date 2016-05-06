@@ -43,21 +43,17 @@
                           &nbsp;Home
                       </a>
                     </li>
-                    <li ng-hide="loggedIn"  style="padding-top: 15px;">
-                      <ul class="list-inline navbar-nav">
-                        <li id="nav-login">
+
+                        <li ng-hide="loggedIn" >
                             <a ng-href="#/login"><i class="fa fa-sign-in"></i>
                                 &nbsp;Sign In
                             </a>
                         </li>
-                        <li id="nav-register">
+                        <li ng-hide="loggedIn" >
                             <a ng-href="#/register"><i class="fa fa-user-plus"></i>
                                 &nbsp;Register
                             </a>
                         </li>
-                      </ul>
-                    </li>
-
 
                     <!-- <li id="nav-options" class="order-nav">
                         <a href="#/"><i class="fa fa-coffee"></i>
@@ -79,18 +75,15 @@
                                 &nbsp;Logout
                         </a>
                     </li> -->
-                    <li id="logged-in-info" ng-show="loggedIn" style="padding-top: 15px;">
-                            <ul class="list-inline navbar-nav">
-                                <li>
+                                <li ng-show="loggedIn">
                                   <a ng-href="#/logout">
                                      <i class="fa fa-sign-out"></i>
                                        Sign Out
                                    </a>
                                 </li>
-                                <li> | </li>
-                                <li><span>Hello&nbsp;{{username}}</span></li>
-                            </ul>
-                      </li>
+                                <li ng-show="loggedIn"> | </li>
+                                <li ng-show="loggedIn"><span>Hello&nbsp;{{username}}</span></li>
+
                 </ul>
             </div>
         </div>
