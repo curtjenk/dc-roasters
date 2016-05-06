@@ -1,0 +1,29 @@
+
+    <div class="container-fluid login">
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-3 text-center">
+          <h1>Login</h1>
+          <h4>Enter your username and password</h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-3 login-wrapper text-center">
+          <p class="pwd-error">
+            {{loginMessage}}
+          </p>
+          <form role="form" ng-submit="loginFunc()" id="login-form" name="login">
+            <div class="form-group">
+              <label>Username</label>
+              <input type="text" ng-model="loginUsername" placeholder="John Smith" minlength="5" class="form-control">
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" ng-model="loginPassword" placeholder="6 character min" minlength="6" class="form-control">
+            </div>
+            <div class="button-holder">
+              <button type="submit" class="btn btn-success">Login</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>

@@ -1,0 +1,36 @@
+.delivery {
+  margin-top: 35px;
+}
+#delivery-form .zip-wrap {
+  display: block !important;
+}
+.delivery-wrapper {
+  width: 60%;
+  margin-top: 20px;
+  border: 1px solid lightgrey;
+  div {
+    margin-left: 10px;
+    margin-bottom: 10px;
+  }
+  input
+    {
+      width: 400px;
+      vertical-align: middle;
+      &#zip {
+        width: 70px;
+      }
+      &#date {
+        width: 160px;
+      }
+    }
+    select
+      {
+        width: 200px;
+        vertical-align: middle;
+      }
+
+
+}
+.button-holder {
+  margin-top: 10px;
+}

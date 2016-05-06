@@ -1,0 +1,52 @@
+body {
+    padding-top: 49px;
+    background-color: #f2f2f2;
+    color: #003300;
+}
+img {
+    max-width: 100%;
+}
+.pwd-error {
+    color: red;
+}
+.nav>li.active-session {
+  display: none;
+}
+.nav-choices {
+  margin-top: 15px;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: white;
+    text-decoration: none;
+    &:visited {
+      color: white;
+    }
+    &:link {
+      color: white;
+    }
+    &:hover {
+    color: white;
+    border: 1px solid white;
+    // font-size: 60px;
+    }
+}
+
+.navbar {
+    min-height: 100px;
+    padding-top: 5px;
+    padding-bottom: 3px;
+    text-align: center;
+    background-color: #003300;
+    img {
+        display: block;
+        margin-top: 2px;
+        height: 70px;
+    }
+}
+button.btn {
+    background-color: #003300;
+}
+.footer {
+    margin-top: 50px;
+}

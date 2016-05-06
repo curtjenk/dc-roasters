@@ -1,0 +1,134 @@
+
+<div class="content" ng-controller="optionsController">
+  <div class="grey-header">
+		<div class="row">
+			<div class="col-sm-2 col-sm-offset-2">
+				<i class="fa fa-home" aria-hidden="true"></i> Home
+			</div>
+			<div class="col-sm-2 active">
+				<i class="fa fa-check-square-o" aria-hidden="true"></i> Options
+			</div>
+			<div class="col-sm-2">
+				<i class="fa fa-truck" aria-hidden="true"></i> Delivery
+			</div>
+			<div class="col-sm-2">
+				<i class="fa fa-shopping-cart" aria-hidden="true"></i> Checkout
+			</div>
+		</div>
+	</div>
+
+    <div class="container-fluid order">
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-3 text-center">
+          <h2>Tell us what you want!!</h2>
+          <h4>Shipping is free and you can skip any week</h4>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12 text-center plans">
+        <form class="options-form" ng-submit="optionsForm(1)">
+          <div class="col-sm-3 col-sm-offset-3 order-card">
+            <h3>Individual Plan</h3>
+            <h5>For those who drink alone</h5><img src="img/solodrinker.jpg">
+            <div class="col-sm-12 order-cost">
+              <div class="row">
+                <div class="col-sm-6 text-right">
+                  <p>Cups per week:</p>
+                </div>
+                <div class="col-sm-6 text-left">
+                  <p>14</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6 text-right">
+                  <p>Price per cup:</p>
+                </div>
+                <div class="col-sm-6 text-left">
+                  <p>$.50</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6 text-right">
+                  <p>Weekly total:</p>
+                </div>
+                <div class="col-sm-6 text-left">
+                  <p>$7.00</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6 text-right">
+                  <p>Grind type:</p>
+                </div>
+                <div class="col-sm-6 text-left">
+                  <select class="select-grind form-control">
+                    <option value="empty"></option>
+                    <option value="grind1">Grind 1</option>
+                    <option value="grind2">Grind 2</option>
+                    <option value="grind3">Grind 3</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <button type="button" class="btn btn-success">Submit</button>
+                <h5>Shipping is always free</h5>
+                <h6>Skip any week.  Cancel anytime</h6>
+              </div>
+            </div>
+          </div>
+        </form>
+        <form class="options-form" ng-submit="optionsForm(2)">
+          <div class="col-sm-3 col-sm-offset-1 order-card">
+            <h3>Family Plan</h3>
+            <h5>For those who drink together</h5><img src="img/coffeedrinkers.jpg">
+            <div class="col-sm-12 order-cost">
+              <div class="row">
+                <div class="col-sm-6 text-right">
+                  <p>Cups per week:</p>
+                </div>
+                <div class="col-sm-6 text-left">
+                  <p>40</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6 text-right">
+                  <p>Price per cup:</p>
+                </div>
+                <div class="col-sm-6 text-left">
+                  <p>$.45</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6 text-right">
+                  <p>Weekly total:</p>
+                </div>
+                <div class="col-sm-6 text-left">
+                  <p>$18.00</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6 text-right">
+                  <p>Grind type:</p>
+                </div>
+                <div class="col-sm-6 text-left">
+                  <select class="select-grind form-control">
+                    <option value="empty"></option>
+                    <option value="grind1">Grind 1</option>
+                    <option value="grind2">Grind 2</option>
+                    <option value="grind3">Grind 3</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <button type="button" class="btn btn-success">Submit</button>
+                <h5>Shipping is always free</h5>
+                <h6>Skip any week.  Cancel anytime</h6>
+              </div>
+            </div>
+          </div>
+      </form>
+        </div>
+      </div>
+    </div>
+
+</div>
