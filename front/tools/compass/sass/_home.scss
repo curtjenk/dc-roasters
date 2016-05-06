@@ -1,6 +1,6 @@
 .header {
   margin-top: 50px;
-  background: url('../img/grind.jpg') no-repeat;
+  background: url('../../assets/img/grind.jpg') no-repeat;
   background-size: cover;
   font-weight: bold;
   // font-family: cursive;
@@ -44,7 +44,7 @@
     width: 0;
 }
 #step-one{
-  background: url('../img/CoffeeBags.jpg') no-repeat;
+  background: url('../assets/img/CoffeeBags.jpg') no-repeat;
   background-size: cover;
   .arrow-holder {
    .arrow-down {

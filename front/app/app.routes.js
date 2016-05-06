@@ -1,6 +1,6 @@
 coffeeApp.config(function($routeProvider) {
     $routeProvider.when('/', {
-        controller: 'app/components/home/homeController',
+        controller: 'homeController',
         templateUrl: function($routeParams) {
             console.log("routing to home");
             $('.home-nav').css('display', 'block');
@@ -9,7 +9,7 @@ coffeeApp.config(function($routeProvider) {
         }
     });
     $routeProvider.when('/register', {
-        controller: 'app/components/register/registerController',
+        controller: 'registerController',
         templateUrl: function($routeParams) {
             console.log("routing to register");
             $('.home-nav').css('display', 'none');
@@ -18,7 +18,7 @@ coffeeApp.config(function($routeProvider) {
         }
     });
     $routeProvider.when('/login', {
-        controller: 'app/components/login/loginController',
+        controller: 'loginController',
         templateUrl: function($routeParams) {
             console.log("routing to login");
             $('.home-nav').css('display', 'none');
@@ -27,7 +27,7 @@ coffeeApp.config(function($routeProvider) {
         }
     });
     $routeProvider.when('/options', {
-        controller: 'app/components/options/optionsController',
+        controller: 'optionsController',
         templateUrl: function($routeParams) {
             console.log("routing to order");
             $('.home-nav').css('display', 'none');
@@ -36,7 +36,7 @@ coffeeApp.config(function($routeProvider) {
         }
     });
     $routeProvider.when('/delivery', {
-        controller: 'app/components/delivery/deliveryController',
+        controller: 'deliveryController',
         templateUrl: function($routeParams) {
             console.log("routing to order");
             $('.home-nav').css('display', 'none');

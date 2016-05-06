@@ -1,7 +1,7 @@
 var coffeeApp = angular.module('coffeeApp', ['ngRoute', 'ngCookies']);
 
 //"run" executes once all modules have been loaded.
-coffeeApp.run( function($rootScope, $location, sharedData) {
+coffeeApp.run( function($rootScope, $location) {
 
    $rootScope.$watch(
     //This is the watch value function. It should return the value which is being watched.
@@ -18,10 +18,10 @@ coffeeApp.run( function($rootScope, $location, sharedData) {
             console.log('url has changed : ' + a);
             //Put some code in here to check if they are logged in!
             //If not... send them home.
-            if (!sharedData.isLoggedIn()) {
-                console.log(' ... but the user is not logged in');
-                 $location.path('/');
-            }
+            // if (!sharedData.isLoggedIn()) {
+            //     console.log(' ... but the user is not logged in');
+            //      $location.path('/');
+            // }
         }
     });
 
