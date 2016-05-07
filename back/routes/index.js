@@ -21,6 +21,7 @@ var ApiResponse = function(success, message, token, doc) {
 };
 
 router.get('/getUserData', function(req, res, next){
+  console.log("********* getUserData *************");
 	console.log(req.query.token);
 	if(req.query.token == undefined){
 		res.json({'failure':"noToken"});
@@ -29,16 +30,15 @@ router.get('/getUserData', function(req, res, next){
 			{token: req.query.token}, //this is the droid we're looking for
 			function (err, doc){
         var apiResp =  new ApiResponse();
-
 				if(doc == null){
           apiResp.success = false;
           apiResp.message = "badToken";
-					res.json(apiResp});
 				}else{
           apiResp.success = false;
           apiResp.doc = doc;
-					res.json(apiResp);
 				}
+        console.log(apiResp);
+        res.json(apiResp);
 			}
 		);
 	}
@@ -54,12 +54,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/registerApi', function(req, res, next) {
     console.log(req.body);
-    var apiResponse = {
-        success: false,
-        message: undefined,
-        token: undefined,
-        resp: undefined
-    };
+    var apiResponse = new ApiResponse();
     var token = randtoken.generate(32);
     var username = req.body.username;
     var password = req.body.password;
@@ -93,6 +88,8 @@ router.post('/registerApi', function(req, res, next) {
                     apiResponse.success = false;
                     apiResponse.message = "user already exists";
                 }
+                console.log("*************  register response ********");
+                console.log(apiResponse);
                 res.json(apiResponse);
             });
 

@@ -8,6 +8,7 @@ coffeeApp.controller('registerController', function($scope, $http, $location, $c
 
     $scope.registerFunc = function() {
         console.log("here");
+          $scope.errorMessage = "";
         if($scope.regPassword !== $scope.regPassword2){
 			       $scope.errorMessage = "Your passwords do not match.";
              return;
@@ -23,12 +24,13 @@ coffeeApp.controller('registerController', function($scope, $http, $location, $c
         //  console.log(loginData);
         $http.post(regUrl, regData).then(
             function(response) {
-                // console.log(response);
+                //  console.log(response);
+
                 // //TODO: error handling
                 // $location.path('/options');
                 if(response.data.success === false){
 					        $scope.errorMessage = response.data.message;
-				        } else if (response.data.success == 'added'){
+				        } else {
 					// store the token and username inside cookies
 					// potential security issue here
 					       $cookies.put('token', response.data.token);

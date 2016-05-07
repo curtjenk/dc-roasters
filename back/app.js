@@ -32,7 +32,7 @@ app.use(cookieParser());
 app.use(session({
     secret: 'noitnotatuma', //SALT value
     resave: false,
-    saveUnitialized: false
+    saveUninitialized: false
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 

@@ -13,33 +13,41 @@ img {
 /* line 9, ../../tools/compass/sass/_index.scss */
 .pwd-error {
   color: red;
+  text-align: center;
 }
 
-/* line 12, ../../tools/compass/sass/_index.scss */
+/* line 13, ../../tools/compass/sass/_index.scss */
 .nav-choices {
+  margin-top: 15px;
+  padding-right: 10px;
+}
+
+/* line 17, ../../tools/compass/sass/_index.scss */
+.hello {
+  color: white;
   margin-top: 15px;
 }
 
-/* line 15, ../../tools/compass/sass/_index.scss */
+/* line 21, ../../tools/compass/sass/_index.scss */
 .navbar-default .navbar-nav > li > a {
   color: white;
   text-decoration: none;
 }
-/* line 18, ../../tools/compass/sass/_index.scss */
+/* line 24, ../../tools/compass/sass/_index.scss */
 .navbar-default .navbar-nav > li > a:visited {
   color: white;
 }
-/* line 21, ../../tools/compass/sass/_index.scss */
+/* line 27, ../../tools/compass/sass/_index.scss */
 .navbar-default .navbar-nav > li > a:link {
   color: white;
 }
-/* line 24, ../../tools/compass/sass/_index.scss */
+/* line 30, ../../tools/compass/sass/_index.scss */
 .navbar-default .navbar-nav > li > a:hover {
   color: white;
   border: 1px solid white;
 }
 
-/* line 31, ../../tools/compass/sass/_index.scss */
+/* line 37, ../../tools/compass/sass/_index.scss */
 .navbar {
   min-height: 100px;
   padding-top: 5px;
@@ -47,19 +55,19 @@ img {
   text-align: center;
   background-color: #003300;
 }
-/* line 37, ../../tools/compass/sass/_index.scss */
+/* line 43, ../../tools/compass/sass/_index.scss */
 .navbar img {
   display: block;
   margin-top: 2px;
   height: 70px;
 }
 
-/* line 43, ../../tools/compass/sass/_index.scss */
+/* line 49, ../../tools/compass/sass/_index.scss */
 button.btn {
   background-color: #003300;
 }
 
-/* line 46, ../../tools/compass/sass/_index.scss */
+/* line 52, ../../tools/compass/sass/_index.scss */
 .footer {
   margin-top: 50px;
 }
@@ -181,31 +189,6 @@ button.btn {
   margin-top: 20px;
 }
 
-/* line 1, ../../tools/compass/sass/_order.scss */
-.order {
-  margin-top: 90px;
-  color: #000;
-}
-/* line 4, ../../tools/compass/sass/_order.scss */
-.order .plans {
-  margin-top: 20px;
-}
-/* line 7, ../../tools/compass/sass/_order.scss */
-.order .order-card {
-  background-color: white;
-  border: 1px solid white;
-  box-shadow: 1px 1px 1px lightgrey;
-}
-/* line 11, ../../tools/compass/sass/_order.scss */
-.order .order-card .order-cost {
-  margin-top: 15px;
-}
-/* line 15, ../../tools/compass/sass/_order.scss */
-.order .select-grind {
-  height: 25px;
-  margin-bottom: 5px;
-}
-
 /* line 1, ../../tools/compass/sass/_delivery.scss */
 .delivery {
   margin-top: 35px;
@@ -249,4 +232,33 @@ button.btn {
 /* line 34, ../../tools/compass/sass/_delivery.scss */
 .button-holder {
   margin-top: 10px;
+}
+
+/* line 2, ../../tools/compass/sass/_options.scss */
+.options {
+  margin-top: 51px;
+  color: #000;
+}
+/* line 5, ../../tools/compass/sass/_options.scss */
+.options .grey-header {
+  background-color: lightgrey;
+}
+/* line 8, ../../tools/compass/sass/_options.scss */
+.options .plans {
+  margin-top: 20px;
+}
+/* line 11, ../../tools/compass/sass/_options.scss */
+.options .order-card {
+  background-color: white;
+  border: 1px solid white;
+  box-shadow: 1px 1px 1px lightgrey;
+}
+/* line 15, ../../tools/compass/sass/_options.scss */
+.options .order-card .order-cost {
+  margin-top: 15px;
+}
+/* line 19, ../../tools/compass/sass/_options.scss */
+.options .select-grind {
+  height: 25px;
+  margin-bottom: 5px;
 }

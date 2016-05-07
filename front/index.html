@@ -13,20 +13,21 @@
     <script type="text/javascript" src="app/app.module.js"></script>
     <script type="text/javascript" src="app/app.routes.js"></script>
     <script type="text/javascript" src="app/shared/factories.js"></script>
+    <script type="text/javascript" src="indexController.js"></script>
     <script type="text/javascript" src="app/components/checkout/checkoutController.js"></script>
     <script type="text/javascript" src="app/components/home/homeController.js"></script>
     <script type="text/javascript" src="app/components/login/loginController.js"></script>
     <script type="text/javascript" src="app/components/register/registerController.js"></script>
     <script type="text/javascript" src="app/components/delivery/deliveryController.js"></script>
     <script type="text/javascript" src="app/components/options/optionsController.js"></script>
-      <script type="text/javascript" src="app/components/receipt/optionsController.js"></script>
+    <script type="text/javascript" src="app/components/receipt/receiptController.js"></script>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald%7CIndie+Flower%7CDosis">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
-<body>
+<body ng-controller="indexController">
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid text-center">
             <div class="navbar-header">
@@ -41,11 +42,11 @@
 
             <div id="bs-navbar-collapse-1" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right nav-choices">
-                    <li id="nav-home">
-                        <a ng-href="#/options"><i class="fa fa-home"></i>
+                    <!-- <li id="nav-home">
+                        <a ng-href="#/"><i class="fa fa-home"></i>
                           &nbsp;Home
                       </a>
-                    </li>
+                    </li> -->
 
                         <li ng-hide="loggedIn" >
                             <a ng-href="#/login"><i class="fa fa-sign-in"></i>
@@ -84,11 +85,11 @@
                                        Sign Out
                                    </a>
                                 </li>
-                                <li ng-show="loggedIn"> | </li>
-                                <li ng-show="loggedIn"><span>Hello&nbsp;{{username}}</span></li>
+                                <li class="hello" ng-show="loggedIn">&nbsp;|&nbsp;</li>
+                                <li class="hello" ng-show="loggedIn">&nbsp;Hello&nbsp;{{username}}</span></li>
 
                 </ul>
-            </div>
+            </div>nbsp
         </div>
     </nav>
 

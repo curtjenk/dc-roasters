@@ -26,7 +26,7 @@ coffeeApp.config(function($routeProvider) {
     $routeProvider.when('/options', {
         // controller: 'optionsController',
         templateUrl: function($routeParams) {
-            console.log("routing to order");
+            console.log("routing to options");
             return 'app/components/options/optionsView.html';
         }
     });

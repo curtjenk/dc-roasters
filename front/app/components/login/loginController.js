@@ -1,5 +1,10 @@
-coffeeApp.controller('loginController', function($scope, $http, $location, $route, $cookies) {
+coffeeApp.controller('loginController', function($rootScope, $scope, $http, $location, $route, $cookies) {
   console.log("in loginController");
+  //If the user hit login, then remove any cookies
+  $cookies.remove("token");
+  $cookies.remove("username");
+ //-----------------
+
   var apiUrl = "http://localhost:3000";
   $scope.loginMessage = "";
 
@@ -25,28 +30,24 @@ coffeeApp.controller('loginController', function($scope, $http, $location, $rout
         };
         console.log(loginData);
 
-        //TODO remove the hard-coded line and uncomment the api call to login.
-        //this was done for testing.
-        $scope.loggedIn = true;
-
-    //     $http.post(loginUrl, loginData).then(
-    //         function(response) {
-    //             console.log(response);
-    //             if (response.data.success === false) {
-    //                 $scope.loginMessage = response.data.message;
-    //             } else {
-    //                 // store the token and username inside cookies
-		// 		           // potential security issue here
-		// 		          $cookies.put('token', response.data.token);
-		// 		          $cookies.put('username', $scope.username);
-		// 		          $scope.loggedIn = true;
-    //       				//redirect to options page
-    //       			 $location.path('/options');
-    //             }
-    //         },
-    //         function(response) {
-    //             console.log(response);
-    //         }
-    //     );
+        $http.post(loginUrl, loginData).then(
+            function(response) {
+                console.log(response);
+                if (response.data.success === false) {
+                    $scope.loginMessage = response.data.message;
+                } else {
+                    // store the token and username inside cookies
+				           // potential security issue here
+				          $cookies.put('token', response.data.resp.token);
+				          $cookies.put('username', $scope.loginUsername);
+                  $rootScope.$broadcast("userLoggedIn", {});
+          				//redirect to options page
+          			 $location.path('/options');
+                }
+            },
+            function(response) {
+                console.log(response);
+            }
+        );
    };
 });
