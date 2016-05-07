@@ -259,7 +259,7 @@ button.btn {
 }
 /* line 19, ../../tools/compass/sass/_options.scss */
 .options .select-grind {
-  height: 25px;
+  height: 30px;
   margin-bottom: 5px;
 }
 /* line 24, ../../tools/compass/sass/_options.scss */
@@ -271,4 +271,13 @@ button.btn {
 /* line 30, ../../tools/compass/sass/_options.scss */
 .options .img-wrapper {
   padding: 10%;
+}
+/* line 33, ../../tools/compass/sass/_options.scss */
+.options .custom {
+  width: 80%;
+  margin: auto;
+}
+/* line 39, ../../tools/compass/sass/_options.scss */
+.options .right-side .right-side-content {
+  margin-top: 20%;
 }
