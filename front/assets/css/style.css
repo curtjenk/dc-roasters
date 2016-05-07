@@ -262,3 +262,13 @@ button.btn {
   height: 25px;
   margin-bottom: 5px;
 }
+/* line 24, ../../tools/compass/sass/_options.scss */
+.options .add-border {
+  border: 1px solid #e3e0d9;
+  border-radius: 3px;
+  margin-bottom: 20px;
+}
+/* line 30, ../../tools/compass/sass/_options.scss */
+.options .img-wrapper {
+  padding: 10%;
+}

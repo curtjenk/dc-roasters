@@ -20,4 +20,14 @@
         height: 25px;
         margin-bottom: 5px;
     }
+
+    .add-border {
+      border: 1px solid $border-color;
+      border-radius: 3px;
+      margin-bottom: 20px;
+    }
+
+    .img-wrapper {
+      padding: 10%;
+    }
 }
