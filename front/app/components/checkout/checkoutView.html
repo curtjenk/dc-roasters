@@ -1,0 +1,120 @@
+<div class="content" ng-controller="checkoutController">
+
+	<div class="grey-header">
+		<div class="row">
+			<div class="col-sm-2 col-sm-offset-2">
+				<i class="fa fa-home" aria-hidden="true"></i> Home
+			</div>
+			<div class="col-sm-2">
+				<i class="fa fa-check-square-o" aria-hidden="true"></i> Options
+			</div>
+			<div class="col-sm-2">
+				<i class="fa fa-truck" aria-hidden="true"></i> Delivery
+			</div>
+			<div class="col-sm-2 active">
+				<i class="fa fa-shopping-cart" aria-hidden="true"></i> Checkout
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<form ng-submit="checkoutForm()">
+
+			<div class="row">
+				<div class="col-sm-12">
+					<h1>Payment</h1>
+					<h5>Order summary below</h5>
+				</div>
+			</div>
+
+			<div class="container light-panel">
+
+				<div class="row">
+					<div class="col-sm-12">
+						<h1>Choices</h1>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-6">
+						<p>Grind</p>
+						<p>Frequency of Delivery</p>
+						<p>Coffee (lbs)</p>
+					</div>
+					<div class="col-sm-6">
+						<p>{{grindType}}</p>
+						<p>{{frequency}}</p>
+						<p>{{quantity}}</p>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-12">
+						<h1>Delivery Information</h1>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-6">
+						<p><label>Name: </label> {{userOptions.fullname}}</p>
+						<p><label>Address: </label> {{userOptions.address}}</p>
+						<p><label>Address (cont.): </label> {{userOptions.address2}}</p>
+						<p><label>City: </label> {{userOptions.city}}</p>
+						<p><label>State: </label> {{userOptions.state}}</p>
+						<p><label>Zip: </label> {{userOptions.zip}}</p>
+						<p><label>Delivery Date: </label> {{userOptions.deliveryDate}}</p>
+					</div>
+					<div class="col-sm-6">
+						<p><label>Grind Type: </label> {{userOptions.grind}}</p>
+						<p><label>Frequency: </label> {{userOptions.frequency}}</p>
+						<p><label>Quantity: </label> {{userOptions.quantity}}</p>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-12">
+						<h1>Current Charge</h1>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-6">
+						<p>Quantity</p>
+						<p>Shipping</p>
+						<h2>Total</h2>
+					</div>
+					<div class="col-sm-6">
+						<p>{{quantity}}lbs x $20.00/lb = {{total}}</p>
+						<p>FREE!</p>
+						<h2>{{total}}</h2>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="row">
+				<div class="col-sm-12 text-center">
+					<div class="button-holder">
+<!-- 						<button type="submit" name="submit" class="btn btn-success btn-lg">Pay With Card</button> -->
+
+<form action="" method="POST">
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_K9L17worNm0z7lHpdssTpwqr"
+    data-amount="999"
+    data-name="DC Roasters"
+    data-description="Coffee Order"
+    data-image="http://www.wkwyatt.com/assets/images/portfolio/dc-logo.png"
+    data-locale="auto">
+  </script>
+</form>
+
+
+						<button type="submit" name="cancel" class="btn btn-danger btn-lg">Cancel Order</button>
+					</div>
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>
