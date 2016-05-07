@@ -13,7 +13,8 @@ var Account = require('../models/account');
 var bcrypt = require('bcrypt-nodejs');
 // Create a token generator with the default settings:
 var randtoken = require('rand-token');
-var ApiResponse = function(success, message, token, doc) {
+var ApiResponse = function(func, success, message, token, doc) {
+  this.func = func || undefined;
   this.success = success || false;
   this.message = message || undefined;
   this.token = token || undefined;
@@ -21,21 +22,26 @@ var ApiResponse = function(success, message, token, doc) {
 };
 
 router.get('/getUserData', function(req, res, next){
+  var apiResp =  new ApiResponse();
+  apiResp.func = "getUserData";
   console.log("********* getUserData *************");
 	console.log(req.query.token);
 	if(req.query.token == undefined){
-		res.json({'failure':"noToken"});
+    apiResp.success = false;
+    apiResp.message = "noToken";
+		res.json(apiResp);
 	}else{
 		Account.findOne(
 			{token: req.query.token}, //this is the droid we're looking for
 			function (err, doc){
-        var apiResp =  new ApiResponse();
-				if(doc == null){
-          apiResp.success = false;
-          apiResp.message = "badToken";
+
+				if(doc !== null){
+          apiResp.success = true;
+          apiResp.doc = doc;
+
 				}else{
           apiResp.success = false;
-          apiResp.doc = doc;
+          apiResp.message = "badToken";
 				}
         console.log(apiResp);
         res.json(apiResp);
@@ -144,22 +150,34 @@ router.post('/loginApi', function(req, res, next) {
 });
 
 router.post('/options', function(req, res, next){
+  console.log("******** update options ****** ")
+  console.log(req.body);
+  console.log(req.body.token);
+  console.log(req.body.quantity);
+  console.log(req.body.frequency);
+  console.log(req.body.grind);
+  var apiResp = new ApiResponse();
+  apiResp.func = 'options';
 	Account.update(
 		{token: req.body.token}, //This is the droid I'm looking for
 		{
-			quantity: req.body.quantity, // what to update
-			frequency: req.body.frequency.option, // what to update -- include option because ng-option packags it thus
-			grind: req.body.grind.option // what to update
+			quantity: req.body.quantity,
+			frequency: req.body.frequency,
+			grind: req.body.grind
 		},
 		{multi:true}, //update multiple or not
 		function(err, numberAffected){
 			console.log(numberAffected);
+
 			if(numberAffected.ok == 1){
 				//we succeeded in updating.
-				res.json({success: "updated"});
-			}else{
-				res.json({failure: "failedUpdate"});
+        apiResp.success = true;
+			}else {
+          apiResp.success = false;
+          apiResp.message = "Failed to update user account";
 			}
+      console.log(apiResp)
+      res.json(apiResp);
 		}
 	);
 });

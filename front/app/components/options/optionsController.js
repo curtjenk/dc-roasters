@@ -47,32 +47,32 @@ coffeeApp.controller('optionsController', function($scope, $http, $location, $ro
   		});
 
   $scope.optionsForm = function(formID){
-
+     console.log("option submitted = " + formID);
   		if(formID == 1){
-  			var selectedGrind = $scope.selGrindOne;
+  			var selectedGrind = $scope.selGrindOne.option;
   			var selectedQuantity = 2;
-  			var selectedFrequency = 'weekly';
+  			var selectedFrequency = 'Weekly';
   		}else if(formID == 2){
   			var selectedGrind = $scope.selGrindTwo;
   			var selectedQuantity = 8;
-  			var selectedFrequency = 'monthly';
+  			var selectedFrequency = 'Monthly';
   		}else if(formID == 3){
-  			var selectedGrind = $scope.selGrindThree;
+  			var selectedGrind = $scope.selGrindThree.option;
   			var selectedQuantity = $scope.quantity;
-  			var selectedFrequency = $scope.frequency;
+  			var selectedFrequency = $scope.frequency.option;
   		}
   		$http.post(apiUrl + '/options', {
   			quantity: selectedQuantity,
   			grind: selectedGrind,
   			frequency: selectedFrequency,
   			token: $cookies.get('token')
-  		}).then(function(response){
+  		}).then(function (response){
   			if(response.data.success == true){
   				$location.path('/delivery');
   			}else{
   				$scope.errorMessage = 'Please contact support.';
   			}
-  		}, function errorCallback(response){
+  		}, function (response){
   			console.log("ERROR.");
   		});
   	};
