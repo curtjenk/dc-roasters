@@ -23,6 +23,12 @@ coffeeApp.config(function($routeProvider) {
             return 'app/components/login/loginView.html';
         }
     });
+    $routeProvider.when('/logout', {
+        templateUrl: function($routeParams) {
+            console.log("routing to logout");
+            return 'app/components/logout/logoutView.html';
+        }
+    });
     $routeProvider.when('/options', {
         // controller: 'optionsController',
         templateUrl: function($routeParams) {
