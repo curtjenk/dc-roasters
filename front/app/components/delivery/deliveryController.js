@@ -1,6 +1,15 @@
-coffeeApp.controller('deliveryController', function($scope, $http, $location, $cookies){
+coffeeApp.controller('deliveryController', function($scope, $http, $location, $cookies, zipLookup){
+	console.log("in deliveryController");
+  var apiUrl = "http://localhost:3000";
 	$scope.dlvrStateOptions = states;
  $scope.deliveryMessage = "";
+
+ $("#zip").keyup(function() {
+        var el = $(this);
+        if (el.val().length === 5 && is_int(el.val())) {
+					 zipLookup.get(el.val(), $("#city"), $("#state"));
+        }
+    });
 
  function is_int(value) {
 		 if ((parseFloat(value) == parseInt(value)) && !isNaN(value)) {

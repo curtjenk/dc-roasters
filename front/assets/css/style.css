@@ -229,16 +229,16 @@ button.btn {
 }
 /* line 15, ../../tools/compass/sass/_delivery.scss */
 .delivery-wrapper input {
-  width: 400px;
+  width: 50%;
   vertical-align: middle;
 }
 /* line 19, ../../tools/compass/sass/_delivery.scss */
 .delivery-wrapper input#zip {
-  width: 70px;
+  width: 20%;
 }
 /* line 22, ../../tools/compass/sass/_delivery.scss */
 .delivery-wrapper input#date {
-  width: 160px;
+  width: 30%;
 }
 /* line 26, ../../tools/compass/sass/_delivery.scss */
 .delivery-wrapper select {
