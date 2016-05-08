@@ -184,6 +184,8 @@ router.post('/options', function(req, res, next){
 
 router.post('/delivery', function(req, res, next){
 	// console.log(req.body.fullname);
+  var apiResp = new ApiResponse();
+  apiResp.func = "delivery";
 	Account.update(
 		{token: req.body.token}, //which doc to update
 		{
@@ -199,11 +201,14 @@ router.post('/delivery', function(req, res, next){
 		function(err, numberAffected){
 			console.log(numberAffected);
 			if(numberAffected.ok == 1){
+        apiResp.success = true;
+        apiResp.message = "updated";
 				//we succeeded in updating.
-				res.json({success: "updated"});
 			}else{
-				res.json({failure: "failedUpdate"});
+        apiResp.success = false;
+        apiResp.message = "failedUpdate";
 			}
+      res.json(apiResp);
 		}
 	);
 });

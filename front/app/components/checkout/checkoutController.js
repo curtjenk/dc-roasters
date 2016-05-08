@@ -1,18 +1,30 @@
-coffeeApp.controller('checkoutController', function($scope, $http, $location, $route) {
-  $http.get(apiUrl + '/getUserData?token='+$cookies.get('token'),{
-	}).then(function successCallback(response){
-		console.log(response);
-		if(response.data.failure == 'badToken'){
-			//User needs to log in
-			$location.path('/register?failure=badToken');
-		}else{
-			$scope.userOptions = response.data;
-		}
-	}, function errorCallback(response){
-		console.log(response.status);
-	});
+coffeeApp.controller('checkoutController', function($scope, $http, $location, $route, $cookies, userData) {
+
+  	var userDataSuccess = function(resp) {
+  	 	if (resp.data.success == false) {
+  		 //User needs to log in
+  		 	$location.path('/login');
+  	 //	$location.path('/register?failure=badToken');
+  	 	}else{
+        console.log(resp.data);
+  		 	$scope.userOptions = resp.data.doc;
+  	 	}
+  	};
+
+  	var userDataError = function(resp) {
+  		console.log("*** couldn't get user data **** ");
+   	 	 console.log(resp.status);
+  	 };
+
+    userData.get($cookies.get('token'), userDataSuccess, userDataError);
 
 	$scope.checkoutForm = function(){
+
+     //use the data from the userData call instead of using the cookies.
+     //bypass the api call and just forward to the receipt view;
+     	$location.path('/receipt');
+
+     /*
 			$http({
 			method: 'POST',
 			url: apiUrl + '/checkout',
@@ -40,5 +52,6 @@ coffeeApp.controller('checkoutController', function($scope, $http, $location, $r
 		}, function errorCallback(status){
 			console.log(status);
 		});
+    */
 	};
 });

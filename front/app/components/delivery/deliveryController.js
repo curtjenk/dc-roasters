@@ -1,13 +1,23 @@
-coffeeApp.controller('deliveryController', function($scope, $http, $location, $cookies, zipLookup){
+coffeeApp.controller('deliveryController', function($scope, $http, $location, $cookies, zipLookup, userData){
 	console.log("in deliveryController");
   var apiUrl = "http://localhost:3000";
 	$scope.dlvrStateOptions = states;
  $scope.deliveryMessage = "";
+ $scope.dlvrCity = "";
+ $scope.dlvrState = "";
 
  $("#zip").keyup(function() {
         var el = $(this);
         if (el.val().length === 5 && is_int(el.val())) {
-					 zipLookup.get(el.val(), $("#city"), $("#state"));
+					var ok = function(resp) {
+						$scope.dlvrCity = resp.city;
+						$scope.dlvrState = resp.state;
+					}
+					var error = function(err) {
+						$scope.dlvrCity = "";
+						$scope.dlvrState = "";
+					}
+					 zipLookup.get(el.val(), ok, error);
         }
     });
 
@@ -19,20 +29,22 @@ coffeeApp.controller('deliveryController', function($scope, $http, $location, $c
 		 }
  }
 
-	$http.get(apiUrl + '/getUserData?token='+$cookies.get('token'),{
-	}).then(function successCallback(response){
-		console.log(response);
-		if(response.data.success == false){
-			//User needs to log in
-			$location.path('/register?failure=badToken');
-		}else{
-			//TODO: what should happen with userOptions?
-			$scope.userOptions = response.data;
-		}
-	}, function errorCallback(response){
-		console.log(response.status);
-	});
+	var userDataSuccess = function(resp) {
+	 	if (resp.data.success == false) {
+		 //User needs to log in
+		 	$location.path('/login');
+	 //	$location.path('/register?failure=badToken');
+	 	}else{
+		 	$scope.userOptions = resp.data.resp;
+	 	}
+	};
 
+	var userDataError = function(resp) {
+		console.log("*** couldn't get user data **** ");
+ 	 	 console.log(resp.status);
+	 };
+
+  userData.get($cookies.get('token'), userDataSuccess, userDataError);
 
 	$scope.deliveryFunc = function(){
 
@@ -47,8 +59,10 @@ coffeeApp.controller('deliveryController', function($scope, $http, $location, $c
 			token: $cookies.get('token')
 		}).then(function successCallback(response){
 			console.log(response.data.success);
-			if(response.data.success == 'updated'){
-				$location.path('/checkout');
+			if(response.data.success == true){
+			  	$location.path('/checkout');
+			} else {
+				$scope.deliveryMessage = response.data.message;
 			}
 		}, function errorCallback(response){
 			console.log("ERROR.");

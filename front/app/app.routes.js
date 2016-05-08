@@ -43,6 +43,12 @@ coffeeApp.config(function($routeProvider) {
             return 'app/components/delivery/deliveryView.html';
         }
     });
+    $routeProvider.when('/checkout', {
+        templateUrl: function($routeParams) {
+            console.log("routing to checkout");
+            return 'app/components/checkout/checkoutView.html';
+        }
+    });
     $routeProvider.otherwise({
         redirectTo: '/'
     });
