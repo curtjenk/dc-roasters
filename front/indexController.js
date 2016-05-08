@@ -6,7 +6,7 @@ coffeeApp.controller('indexController', function($rootScope, $scope, $http, $loc
          $scope.username = $cookies.get('username');
      });
   $rootScope.$on("userLoggedOut", function (args) {
-         alert("logged out");
+        // alert("logged out");
             $scope.loggedIn = false;
         });
 });

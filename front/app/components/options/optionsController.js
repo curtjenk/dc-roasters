@@ -53,7 +53,7 @@ coffeeApp.controller('optionsController', function($scope, $http, $location, $ro
   			var selectedQuantity = 2;
   			var selectedFrequency = 'Weekly';
   		}else if(formID == 2){
-  			var selectedGrind = $scope.selGrindTwo;
+  			var selectedGrind = $scope.selGrindTwo.option;
   			var selectedQuantity = 8;
   			var selectedFrequency = 'Monthly';
   		}else if(formID == 3){

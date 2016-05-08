@@ -8,6 +8,9 @@ coffeeApp.controller('checkoutController', function($scope, $http, $location, $r
   	 	}else{
         console.log(resp.data);
   		 	$scope.userOptions = resp.data.doc;
+        var d = new Date(resp.data.doc.deliveryDate)
+        $scope.userOptions.deliveryDate = d.toLocaleDateString();
+        $scope.total = Number(resp.data.doc.quantity) * 20;
   	 	}
   	};
 

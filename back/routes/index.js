@@ -111,11 +111,16 @@ router.post('/loginApi', function(req, res, next) {
     var username = req.body.username;
     var password = req.body.password;
     console.log(req.body);
-    var apiResponse = {
-        success: false,
-        message: undefined,
-        resp: undefined
-    };
+    // var ApiResponse = function(func, success, message, token, doc) {
+    //   this.func = func || undefined;
+    //   this.success = success || false;
+    //   this.message = message || undefined;
+    //   this.token = token || undefined;
+    //   this.doc = doc || undefined;
+    // };
+    var apiResponse = new ApiResponse();
+    apiResponse.func = "login";
+
     if (username === null || password === null || username.length === 0 || password.length === 0) {
         apiResponse.success = false;
         apiResponse.message = 'invalid request';
@@ -126,26 +131,27 @@ router.post('/loginApi', function(req, res, next) {
             username: username
         },
         function(err, docFound) {
-            console.log(err);
+             console.log(err);
             console.log(docFound);
 
-            if (docFound === null) {
+            if (docFound === null || !docFound) {
                 apiResponse.success = false;
                 apiResponse.message = 'invalid user';
                 res.json(apiResponse);
-            }
-            var passwordsMatch = bcrypt.compareSync(password, docFound.password); //returns boolean
-            console.log("password match = " + passwordsMatch);
-            if (passwordsMatch) {
-                apiResponse.success = true;
-                apiResponse.resp = docFound;
-                req.session.username = username;
             } else {
-                apiResponse.success = false;
-                apiResponse.message = 'invalid password';
+              console.log(apiResponse);
+              var passwordsMatch = bcrypt.compareSync(password, docFound.password); //returns boolean
+              console.log("password match = " + passwordsMatch);
+              if (passwordsMatch) {
+                  apiResponse.success = true;
+                  apiResponse.doc = docFound;
+                  req.session.username = username;
+              } else {
+                  apiResponse.success = false;
+                  apiResponse.message = 'invalid password';
+              }
+              res.json(apiResponse);
             }
-            res.json(apiResponse);
-
         });
 });
 

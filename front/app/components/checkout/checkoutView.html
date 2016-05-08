@@ -1,4 +1,4 @@
-<div class="content" ng-controller="checkoutController">
+<div class="content container-fluid checkout" ng-controller="checkoutController">
 
 	<div class="grey-header">
 		<div class="row">
@@ -29,7 +29,7 @@
 
 			<div class="container light-panel">
 
-				<div class="row">
+				<!-- <div class="row">
 					<div class="col-sm-12">
 						<h1>Choices</h1>
 					</div>
@@ -46,7 +46,7 @@
 						<p>{{frequency}}</p>
 						<p>{{quantity}}</p>
 					</div>
-				</div>
+				</div> -->
 
 				<div class="row">
 					<div class="col-sm-12">
@@ -84,7 +84,7 @@
 						<h2>Total</h2>
 					</div>
 					<div class="col-sm-6">
-						<p>{{quantity}}lbs x $20.00/lb = {{total}}</p>
+						<p>{{userOptions.quantity}} &nbsp; lbs x $20.00/lb = {{total}}</p>
 						<p>FREE!</p>
 						<h2>{{total}}</h2>
 					</div>

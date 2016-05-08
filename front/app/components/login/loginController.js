@@ -28,7 +28,7 @@ coffeeApp.controller('loginController', function($rootScope, $scope, $http, $loc
             username: $scope.loginUsername,
             password: $scope.loginPassword
         };
-        console.log(loginData);
+      //  console.log(loginData);
 
         $http.post(loginUrl, loginData).then(
             function(response) {
@@ -38,7 +38,7 @@ coffeeApp.controller('loginController', function($rootScope, $scope, $http, $loc
                 } else {
                     // store the token and username inside cookies
 				           // potential security issue here
-				          $cookies.put('token', response.data.resp.token);
+				          $cookies.put('token', response.data.doc.token);
 				          $cookies.put('username', $scope.loginUsername);
                   $rootScope.$broadcast("userLoggedIn", {});
           				//redirect to options page
