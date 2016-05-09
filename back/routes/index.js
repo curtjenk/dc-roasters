@@ -142,13 +142,11 @@ router.post('/loginApi', function(req, res, next) {
                     // updateWithToken(username, token);
                     //update the user's account with a new token
                     //set to expire in 30 minutes
-                    var plus30 = new Date();
-                    plus30.setMinutes(plus30.getMinutes() + 30);
                     Account.update({
                             username: username
                         }, {
                             token: token,
-                            tokenExpiration: plus30
+                            tokenExpiration: datePlus30min()
                         }, {
                             multi: true
                         },
@@ -176,6 +174,36 @@ router.post('/loginApi', function(req, res, next) {
             }
         });
 });
+
+// function updateWithToken(username, token) {
+//     //set token expiration to 30 minutes
+//     Account.update({
+//             username: username
+//         }, {
+//             token: token,
+//             tokenExpiration: datePlus30min()
+//         }, {
+//             multi: false
+//         },
+//         function(err, numberAffected) {
+//             console.log("*** updating with new token *** ");
+//             console.log(username + ' : ' + token);
+//             console.log(err);
+//             console.log(numberAffected);
+//             if (numberAffected.ok !== 1) {
+//                 console.log('**** updateWithToken error *****');
+//                 console.log(username);
+//             }
+//         }
+//
+//     );
+// }
+//
+function datePlus30min() {
+    var plus30 = new Date();
+    plus30.setMinutes(plus30.getMinutes() + 30);
+    return plus30;
+}
 
 
 router.post('/options', function(req, res, next) {

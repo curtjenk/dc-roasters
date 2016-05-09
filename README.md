@@ -6,6 +6,8 @@ The app has the following features
 - Registration
 - Login
 - Order
+- Session management
+- Credit Card payment processing (sorta!)
 
 ### Tech
 
@@ -20,12 +22,10 @@ DC Roasters uses a number of open source projects to work properly:
 * [Mongoose] - object modeling for node.js
 
 ### Installation
-  - cd front
+  - cd to the "front" directory
     * run npm install
     * Note: uses port 8000
-
-  - cd back
-  -
+  - cd to the "back" directory
     * run npm install
     * Note: uses port 3000
 
