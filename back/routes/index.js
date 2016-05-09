@@ -13,6 +13,8 @@ var Account = require('../models/account');
 var bcrypt = require('bcrypt-nodejs');
 // Create a token generator with the default settings:
 var randtoken = require('rand-token');
+var stripe = require('stripe')("sk_test_d2uyCRSMUQK3SKTTTwvlOz7R");
+
 var ApiResponse = function(func, success, message, token, doc) {
     this.func = func || undefined;
     this.success = success || false;
@@ -44,7 +46,7 @@ router.get('/getUserData', function(req, res, next) {
                     apiResp.success = false;
                     apiResp.message = "badToken";
                 }
-                console.log(apiResp);
+                //  console.log(apiResp);
                 res.json(apiResp);
             }
         );
@@ -56,6 +58,55 @@ router.get('/', function(req, res, next) {
     res.render('index', {
         title: 'Express'
     });
+});
+
+router.post('/checkout', function(req, res, next) {
+    console.log(req.body);
+    var apiResp = new ApiResponse();
+    apiResp.func = "checkout";
+    var token = req.body.token;
+    var amount = req.body.amount;
+    var stripeToken = req.body.stripeToken;
+    if (token === undefined) {
+        apiResp.success = false;
+        apiResp.message = "noToken";
+        res.json(apiResp);
+    } else {
+        Account.findOne({
+                token: token
+            }, //this is the droid we're looking for
+            function(err, doc) {
+                if (doc !== null) {
+                    //send info to stripe for checkout
+                    var charge = stripe.charges.create({
+                        amount: amount,
+                        currency: "usd",
+                        source: stripeToken,
+                        description: "DC Roasters Coffee"
+                    }, function(err, charge) {
+                        if (err && err.type === 'StripeCardError') {
+                            // The card has been declined
+                            console.log("The Card has been declined");
+                            apiResp.success = false;
+                            apiResp.message = 'Card Declined';
+                            res.json(apiResp);
+                        } else {
+                            apiResp.success = true;
+                            apiResp.message = 'Card Accepted';
+                            res.json(apiResp);
+                        }
+                          console.log(apiResp);
+                    });
+                } else {
+                    apiResp.success = false;
+                    apiResp.message = "badToken";
+                    res.json(apiResp);
+                      console.log(apiResp);
+                }
+
+            }
+        );
+    }
 });
 
 router.post('/registerApi', function(req, res, next) {

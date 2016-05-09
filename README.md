@@ -24,10 +24,10 @@ DC Roasters uses a number of open source projects to work properly:
 ### Installation
   - cd to the "front" directory
     * run npm install
-    * Note: uses port 8000
+    * Note: uses port 8200
   - cd to the "back" directory
     * run npm install
-    * Note: uses port 3000
+    * Note: uses port 3200
 
 ### Development
 

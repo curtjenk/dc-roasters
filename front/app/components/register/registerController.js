@@ -1,5 +1,5 @@
 coffeeApp.controller('registerController', function($scope, $http, $location, $cookies, $route) {
-    var apiUrl = "http://localhost:3000";
+    var apiUrl = "http://localhost:3200";
 
     $scope.registerFunc = function() {
         console.log("here");

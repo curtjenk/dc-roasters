@@ -1,6 +1,6 @@
 coffeeApp.factory('sharedData', function($http) {
     var sharedData = {};
-    sharedData.apiUrl = "http://localhost:3000";
+    sharedData.apiUrl = "http://localhost:3200";
     return sharedData;
 });
 

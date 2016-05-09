@@ -1,10 +1,21 @@
-<div class="content" ng-controller="receiptController">
+<div class="content receipt" ng-controller="receiptController">
 
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12">
 				<h1>Success</h1>
 				<h5>Your order is complete!</h5>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12 text-center">
+				<div class="button-holder">
+					<!-- <form ng-submit="payment()" method=""> -->
+					<a href="#/options" class="btn btn-success btn-lg">Place Another Order?</a>
+				</div>
+				<div class="pwd-error">
+					{{errorMessage}}
+				</div>
 			</div>
 		</div>
 	</div>

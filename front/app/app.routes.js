@@ -48,6 +48,11 @@ coffeeApp.config(function($routeProvider) {
             return 'app/components/checkout/checkoutView.html';
         }
     });
+    $routeProvider.when('/receipt', {
+        templateUrl: function($routeParams) {
+            return 'app/components/receipt/receiptView.html';
+        }
+    });
     $routeProvider.otherwise({
         redirectTo: '/'
     });

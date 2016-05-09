@@ -2,7 +2,7 @@ coffeeApp.controller('loginController', function($rootScope, $scope, $http, $loc
     console.log("in loginController");
 
 
-    var apiUrl = "http://localhost:3000";
+    var apiUrl = "http://localhost:3200";
     $scope.loginMessage = "";
     //
     // if (($location.path() == '/login')) {

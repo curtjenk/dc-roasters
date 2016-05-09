@@ -5,7 +5,7 @@ coffeeApp.controller('deliveryController', function($scope, $http, $location, $c
 		$("#step-delivery").addClass('active');
     $('#step-checkout').removeClass('active');
 
-	  var apiUrl = "http://localhost:3000";
+	  var apiUrl = "http://localhost:3200";
     $scope.dlvrStateOptions = states;
     $scope.deliveryMessage = "";
     $scope.dlvrCity = "";
@@ -25,6 +25,10 @@ coffeeApp.controller('deliveryController', function($scope, $http, $location, $c
             zipLookup.get(el.val(), ok, error);
         }
     });
+    var estDlvrDate = new Date();
+    estDlvrDate.setDate(estDlvrDate.getDate() + 30);
+
+    $scope.dlvrDate = estDlvrDate;
 
     function is_int(value) {
         if ((parseFloat(value) == parseInt(value)) && !isNaN(value)) {
