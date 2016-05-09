@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var Account = new Schema({
   token: String,
+  tokenExpiration: Date,
   username: String,
   password: String,
   email: String,

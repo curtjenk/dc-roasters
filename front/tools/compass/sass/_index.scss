@@ -52,6 +52,9 @@ img {
   width: 100%;
   padding: 0;
   box-sizing: border-box;
+  .active {
+    color: white;
+  }
 }
 button.btn {
     background-color: #003300;

@@ -1,33 +1,63 @@
-coffeeApp.controller('checkoutController', function($scope, $http, $location, $route, $cookies, userData) {
+coffeeApp.controller('checkoutController', function($scope, $http, $location, $route, $cookies, userData2) {
+    $('#step-options').removeClass('active');
+    $('#step-delivery').removeClass('active');
+    $('#step-checkout').addClass('active');
+    userData2.get($cookies.get('token')).then(
+        function(resp) {
+            if (resp.data.success === false) {
+                //User needs to log in
+                $location.path('/login');
+                //	$location.path('/register?failure=badToken');
+            } else {
 
-  	var userDataSuccess = function(resp) {
-  	 	if (resp.data.success == false) {
-  		 //User needs to log in
-  		 	$location.path('/login');
-  	 //	$location.path('/register?failure=badToken');
-  	 	}else{
-        console.log(resp.data);
-  		 	$scope.userOptions = resp.data.doc;
-        var d = new Date(resp.data.doc.deliveryDate)
-        $scope.userOptions.deliveryDate = d.toLocaleDateString();
-        $scope.total = Number(resp.data.doc.quantity) * 20;
-  	 	}
-  	};
+                $scope.userOptions = resp.data.doc;
+                var d = new Date(resp.data.doc.deliveryDate);
+                $scope.userOptions.deliveryDate = d.toLocaleDateString();
+                $scope.total = Number(resp.data.doc.quantity) * 20;
+                var tokenExpiration = Date.parse(resp.data.doc.tokenExpiration);
+                 console.log(tokenExpiration);
+                 console.log(Date.now());
+                 if (Date.now() > tokenExpiration) {
+                   console.log("user needs to login again because token expired");
+                   $scope.$broadcast('sessionExpired', {});
+                   $location.path('/login');
+                 }
+            }
+        },
+        function(error) {
+            console.log("*** couldn't get user data **** ");
+            console.log(resp.status);
+        }
+    );
 
-  	var userDataError = function(resp) {
-  		console.log("*** couldn't get user data **** ");
-   	 	 console.log(resp.status);
-  	 };
+    // var userDataSuccess = function(resp) {
+    //  	if (resp.data.success == false) {
+    // 	 //User needs to log in
+    // 	 	$location.path('/login');
+    //  //	$location.path('/register?failure=badToken');
+    //  	}else{
+    //     console.log(resp.data);
+    // 	 	$scope.userOptions = resp.data.doc;
+    //     var d = new Date(resp.data.doc.deliveryDate)
+    //     $scope.userOptions.deliveryDate = d.toLocaleDateString();
+    //     $scope.total = Number(resp.data.doc.quantity) * 20;
+    //  	}
+    // };
+    //
+    // var userDataError = function(resp) {
+    // 	console.log("*** couldn't get user data **** ");
+    // 	 	 console.log(resp.status);
+    //  };
+    //
+    // userData.get($cookies.get('token'), userDataSuccess, userDataError);
 
-    userData.get($cookies.get('token'), userDataSuccess, userDataError);
+    $scope.checkoutForm = function() {
 
-	$scope.checkoutForm = function(){
+        //use the data from the userData call instead of using the cookies.
+        //bypass the api call and just forward to the receipt view;
+        $location.path('/receipt');
 
-     //use the data from the userData call instead of using the cookies.
-     //bypass the api call and just forward to the receipt view;
-     	$location.path('/receipt');
-
-     /*
+        /*
 			$http({
 			method: 'POST',
 			url: apiUrl + '/checkout',
@@ -56,5 +86,5 @@ coffeeApp.controller('checkoutController', function($scope, $http, $location, $r
 			console.log(status);
 		});
     */
-	};
+    };
 });

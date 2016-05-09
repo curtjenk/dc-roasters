@@ -70,13 +70,17 @@ img {
   padding: 0;
   box-sizing: border-box;
 }
+/* line 55, ../../tools/compass/sass/_index.scss */
+.grey-header .active {
+  color: white;
+}
 
-/* line 56, ../../tools/compass/sass/_index.scss */
+/* line 59, ../../tools/compass/sass/_index.scss */
 button.btn {
   background-color: #003300;
 }
 
-/* line 59, ../../tools/compass/sass/_index.scss */
+/* line 62, ../../tools/compass/sass/_index.scss */
 .footer {
   margin-top: 50px;
 }
@@ -89,7 +93,7 @@ button.btn {
   font-weight: bold;
   font-size: 60px;
   color: #ffffff;
-  height: 220px;
+  height: 100vh;
 }
 
 /* line 12, ../../tools/compass/sass/_home.scss */

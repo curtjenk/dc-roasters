@@ -1,20 +1,24 @@
-<div class="container-fluid delivery" ng-controller="deliveryController">
-  <div class="grey-header">
-		<div class="row">
-			<div class="col-sm-2 col-sm-offset-2">
-				<i class="fa fa-home" aria-hidden="true"></i> Home
-			</div>
-			<div class="col-sm-2 active">
-				<i class="fa fa-check-square-o" aria-hidden="true"></i> Options
-			</div>
-			<div class="col-sm-2">
-				<i class="fa fa-truck" aria-hidden="true"></i> Delivery
-			</div>
-			<div class="col-sm-2">
-				<i class="fa fa-shopping-cart" aria-hidden="true"></i> Checkout
-			</div>
-		</div>
-	</div>
+<div class="content delivery" ng-controller="deliveryController">
+
+<!-- <ng-include src="'app/shared/grey-header.html'"></ng-include> -->
+
+<div class="grey-header">
+  <div class="row">
+    <!-- <div class="col-sm-2 col-sm-offset-2">
+      <i class="fa fa-home" aria-hidden="true"></i> Home
+    </div> -->
+    <div id="step-options" class="col-sm-offset-4 col-sm-2 active">
+      <i class="fa fa-check-square-o" aria-hidden="true"></i> Options
+    </div>
+    <div id="step-delivery" class="col-sm-2" >
+      <i class="fa fa-truck" aria-hidden="true"></i> Delivery
+    </div>
+    <div id="step-checkout" class="col-sm-2">
+      <i class="fa fa-shopping-cart" aria-hidden="true"></i> Checkout
+    </div>
+  </div>
+</div>
+
     <div class="row">
         <div class="col-sm-11 col-sm-offset-1">
             <h1>Please enter your shipping information</h1>

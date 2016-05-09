@@ -1,10 +1,5 @@
 coffeeApp.controller('registerController', function($scope, $http, $location, $cookies, $route) {
     var apiUrl = "http://localhost:3000";
-    //the location service has access to the query string.
-	//Pull out the property and put the value in the errorMessage
-	if($location.search().failure == "badToken"){
-		$scope.errorMessage = "You must login to access the requested page.";
-	}
 
     $scope.registerFunc = function() {
         console.log("here");
@@ -35,6 +30,7 @@ coffeeApp.controller('registerController', function($scope, $http, $location, $c
 					// potential security issue here
 					       $cookies.put('token', response.data.token);
 					       $cookies.put('username', $scope.username);
+                 $scope.$emit("userLoggedIn", {username: $scope.username});
 					//redirect to options page
 					       $location.path('/options');
 				        }

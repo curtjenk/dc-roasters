@@ -14,42 +14,42 @@ var bcrypt = require('bcrypt-nodejs');
 // Create a token generator with the default settings:
 var randtoken = require('rand-token');
 var ApiResponse = function(func, success, message, token, doc) {
-  this.func = func || undefined;
-  this.success = success || false;
-  this.message = message || undefined;
-  this.token = token || undefined;
-  this.doc = doc || undefined;
+    this.func = func || undefined;
+    this.success = success || false;
+    this.message = message || undefined;
+    this.token = token || undefined;
+    this.doc = doc || undefined;
 };
 
-router.get('/getUserData', function(req, res, next){
-  var apiResp =  new ApiResponse();
-  apiResp.func = "getUserData";
-  console.log("********* getUserData *************");
-	console.log(req.query.token);
-	if(req.query.token == undefined){
-    apiResp.success = false;
-    apiResp.message = "noToken";
-		res.json(apiResp);
-	}else{
-		Account.findOne(
-			{token: req.query.token}, //this is the droid we're looking for
-			function (err, doc){
-
-				if(doc !== null){
-          apiResp.success = true;
-          apiResp.doc = doc;
-
-				}else{
-          apiResp.success = false;
-          apiResp.message = "badToken";
-				}
-        console.log(apiResp);
+router.get('/getUserData', function(req, res, next) {
+    var apiResp = new ApiResponse();
+    apiResp.func = "getUserData";
+    console.log("********* getUserData *************");
+    console.log(req.query.token);
+    if (req.query.token === undefined) {
+        apiResp.success = false;
+        apiResp.message = "noToken";
         res.json(apiResp);
-			}
-		);
-	}
-})
+    } else {
+        Account.findOne({
+                token: req.query.token
+            }, //this is the droid we're looking for
+            function(err, doc) {
 
+                if (doc !== null) {
+                    apiResp.success = true;
+                    apiResp.doc = doc;
+
+                } else {
+                    apiResp.success = false;
+                    apiResp.message = "badToken";
+                }
+                console.log(apiResp);
+                res.json(apiResp);
+            }
+        );
+    }
+});
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -61,6 +61,7 @@ router.get('/', function(req, res, next) {
 router.post('/registerApi', function(req, res, next) {
     console.log(req.body);
     var apiResponse = new ApiResponse();
+    apiResponse.func = 'register';
     var token = randtoken.generate(32);
     var username = req.body.username;
     var password = req.body.password;
@@ -73,6 +74,7 @@ router.post('/registerApi', function(req, res, next) {
         var hashedPassword = bcrypt.hashSync(password);
         var newAccount = new Account({
             token: token,
+            tokenExpiration: datePlus30min(),
             username: username,
             password: hashedPassword,
             email: email,
@@ -86,9 +88,7 @@ router.post('/registerApi', function(req, res, next) {
                 if (docFound === null) { //user doesn't exist
                     newAccount.save(); //insert to db.  Need error handling
                     apiResponse.success = true;
-                    apiResponse.resp = {
-                        username: username
-                    };
+                    apiResponse.token = token;
                     req.session.username = username;
                 } else {
                     apiResponse.success = false;
@@ -110,14 +110,8 @@ router.post('/registerApi', function(req, res, next) {
 router.post('/loginApi', function(req, res, next) {
     var username = req.body.username;
     var password = req.body.password;
+
     console.log(req.body);
-    // var ApiResponse = function(func, success, message, token, doc) {
-    //   this.func = func || undefined;
-    //   this.success = success || false;
-    //   this.message = message || undefined;
-    //   this.token = token || undefined;
-    //   this.doc = doc || undefined;
-    // };
     var apiResponse = new ApiResponse();
     apiResponse.func = "login";
 
@@ -131,92 +125,125 @@ router.post('/loginApi', function(req, res, next) {
             username: username
         },
         function(err, docFound) {
-             console.log(err);
-            console.log(docFound);
-
+            // console.log(err);
+            // console.log(docFound);
             if (docFound === null || !docFound) {
                 apiResponse.success = false;
                 apiResponse.message = 'invalid user';
                 res.json(apiResponse);
             } else {
-              console.log(apiResponse);
-              var passwordsMatch = bcrypt.compareSync(password, docFound.password); //returns boolean
-              console.log("password match = " + passwordsMatch);
-              if (passwordsMatch) {
-                  apiResponse.success = true;
-                  apiResponse.doc = docFound;
-                  req.session.username = username;
-              } else {
-                  apiResponse.success = false;
-                  apiResponse.message = 'invalid password';
-              }
-              res.json(apiResponse);
+                var passwordsMatch = bcrypt.compareSync(password, docFound.password); //returns boolean
+                // console.log("password match = " + passwordsMatch);
+                if (passwordsMatch) {
+                    apiResponse.success = true;
+                    apiResponse.doc = docFound;
+                    req.session.username = username;
+                    var token = randtoken.generate(32);
+                    // updateWithToken(username, token);
+                    //update the user's account with a new token
+                    //set to expire in 30 minutes
+                    var plus30 = new Date();
+                    plus30.setMinutes(plus30.getMinutes() + 30);
+                    Account.update({
+                            username: username
+                        }, {
+                            token: token,
+                            tokenExpiration: plus30
+                        }, {
+                            multi: true
+                        },
+                        function(err, numberAffected) {
+                            // console.log("*** updating with new token *** ");
+                            // console.log(username + ' : ' + token);
+                            // console.log(err);
+                            // console.log(numberAffected);
+                            if (numberAffected.ok !== 1) {
+                                console.log('**** updateWithToken error *****');
+                                console.log(username);
+                            }
+                            apiResponse.token = token;
+                            apiResponse.doc.token = apiResponse.token;
+                            // console.log(apiResponse);
+                            res.json(apiResponse);
+                        }
+                    );
+                } else {
+                    apiResponse.success = false;
+                    apiResponse.message = 'invalid password';
+                    console.log(apiResponse);
+                    res.json(apiResponse);
+                }
             }
         });
 });
 
-router.post('/options', function(req, res, next){
-  console.log("******** update options ****** ")
-  console.log(req.body);
-  console.log(req.body.token);
-  console.log(req.body.quantity);
-  console.log(req.body.frequency);
-  console.log(req.body.grind);
-  var apiResp = new ApiResponse();
-  apiResp.func = 'options';
-	Account.update(
-		{token: req.body.token}, //This is the droid I'm looking for
-		{
-			quantity: req.body.quantity,
-			frequency: req.body.frequency,
-			grind: req.body.grind
-		},
-		{multi:true}, //update multiple or not
-		function(err, numberAffected){
-			console.log(numberAffected);
 
-			if(numberAffected.ok == 1){
-				//we succeeded in updating.
-        apiResp.success = true;
-			}else {
-          apiResp.success = false;
-          apiResp.message = "Failed to update user account";
-			}
-      console.log(apiResp)
-      res.json(apiResp);
-		}
-	);
+router.post('/options', function(req, res, next) {
+    // console.log("******** update options ****** ");
+    // console.log(req.body);
+    // console.log(req.body.token);
+    // console.log(req.body.quantity);
+    // console.log(req.body.frequency);
+    // console.log(req.body.grind);
+    var apiResp = new ApiResponse();
+    apiResp.func = 'options';
+    Account.update({
+            token: req.body.token
+        }, //This is the droid I'm looking for
+        {
+            quantity: req.body.quantity,
+            frequency: req.body.frequency,
+            grind: req.body.grind
+        }, {
+            multi: true
+        }, //update multiple or not
+        function(err, numberAffected) {
+            console.log(numberAffected);
+
+            if (numberAffected.ok == 1) {
+                //we succeeded in updating.
+                apiResp.success = true;
+            } else {
+                apiResp.success = false;
+                apiResp.message = "Failed to update user account";
+            }
+            console.log(apiResp);
+            res.json(apiResp);
+        }
+    );
 });
 
-router.post('/delivery', function(req, res, next){
-	// console.log(req.body.fullname);
-  var apiResp = new ApiResponse();
-  apiResp.func = "delivery";
-	Account.update(
-		{token: req.body.token}, //which doc to update
-		{
-			fullname: req.body.fullname, // what to update
-			address: req.body.addressOne,
-			addres2: req.body.addressTwo,
-			city: req.body.usrCity,
-			state: req.body.usrState,
-			zip: req.body.usrZip,
-			deliveryDate: req.body.deliveryDate
-		},
-		{multi:true}, //update multiple or not
-		function(err, numberAffected){
-			console.log(numberAffected);
-			if(numberAffected.ok == 1){
-        apiResp.success = true;
-        apiResp.message = "updated";
-				//we succeeded in updating.
-			}else{
-        apiResp.success = false;
-        apiResp.message = "failedUpdate";
-			}
-      res.json(apiResp);
-		}
-	);
+router.post('/delivery', function(req, res, next) {
+    // console.log(req.body.fullname);
+    var apiResp = new ApiResponse();
+    apiResp.func = "delivery";
+    Account.update({
+            token: req.body.token
+        }, //which doc to update
+        {
+            fullname: req.body.fullname, // what to update
+            address: req.body.addressOne,
+            address2: req.body.addressTwo,
+            city: req.body.usrCity,
+            state: req.body.usrState,
+            zip: req.body.usrZip,
+            deliveryDate: req.body.deliveryDate
+        }, {
+            multi: true
+        }, //update multiple or not
+        function(err, numberAffected) {
+            console.log(numberAffected);
+            if (numberAffected.ok == 1) {
+                apiResp.success = true;
+                apiResp.message = "updated";
+                //we succeeded in updating.
+            } else {
+                apiResp.success = false;
+                apiResp.message = "failedUpdate";
+            }
+            res.json(apiResp);
+        }
+    );
 });
 
 module.exports = router;
