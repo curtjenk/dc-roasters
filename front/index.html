@@ -50,45 +50,24 @@
                       </a>
                     </li> -->
 
-                        <li ng-hide="loggedIn" >
-                            <a ng-href="#/login"><i class="fa fa-sign-in"></i>
+                    <li ng-hide="loggedIn">
+                        <a ng-href="#/login"><i class="fa fa-sign-in"></i>
                                 &nbsp;Sign In
                             </a>
-                        </li>
-                        <li ng-hide="loggedIn" >
-                            <a ng-href="#/register"><i class="fa fa-user-plus"></i>
+                    </li>
+                    <li ng-hide="loggedIn">
+                        <a ng-href="#/register"><i class="fa fa-user-plus"></i>
                                 &nbsp;Register
                             </a>
-                        </li>
-
-                    <!-- <li id="nav-options" class="order-nav">
-                        <a href="#/"><i class="fa fa-coffee"></i>
-                            &nbsp;Options
+                    </li>
+                    <li ng-show="loggedIn">
+                        <a ng-href="#/logout">
+                            <i class="fa fa-sign-out"></i> Sign Out
                         </a>
                     </li>
-                    <li id="nav-delivery" class="order-nav">
-                        <a href="#/delivery"><i class="fa fa-truck"></i>
-                            &nbsp;Delivery
-                        </a>
+                    <li class="hello" ng-show="loggedIn">|&nbsp;</li>
+                    <li class="hello" ng-show="loggedIn">&nbsp;Hello&nbsp;{{username}}</span>
                     </li>
-                    <li id="nav-payment" class="order-nav">
-                        <a href="#/"><i class="fa fa-credit-card"></i>
-                            &nbsp;Payment
-                        </a>
-                    </li>
-                    <li class="active-session">
-                        <a href="#/"><i class="fa fa-sign-out" ng-click="logoutFunc()"></i>
-                                &nbsp;Logout
-                        </a>
-                    </li> -->
-                                <li ng-show="loggedIn">
-                                  <a ng-href="#/logout">
-                                     <i class="fa fa-sign-out"></i>
-                                       Sign Out
-                                   </a>
-                                </li>
-                                <li class="hello" ng-show="loggedIn">|&nbsp;</li>
-                                <li class="hello" ng-show="loggedIn">&nbsp;Hello&nbsp;{{username}}</span></li>
 
                 </ul>
             </div>nbsp
