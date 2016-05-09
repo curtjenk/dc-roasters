@@ -1,5 +1,4 @@
 coffeeApp.controller('registerController', function($scope, $http, $location, $cookies, $route) {
-    var apiUrl = "http://localhost:3200";
 
     $scope.registerFunc = function() {
         console.log("here");
@@ -9,7 +8,7 @@ coffeeApp.controller('registerController', function($scope, $http, $location, $c
              return;
 		    }
 
-        var regUrl = apiUrl + "/registerApi";
+        var regUrl = sharedData.apiUrl + "/registerApi";
         var regData = {
             username: $scope.regUsername,
             password: $scope.regPassword,

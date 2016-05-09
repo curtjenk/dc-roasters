@@ -291,3 +291,12 @@ button.btn {
   border: 1px solid white;
   border-radius: 5px;
 }
+
+/* line 1, ../../tools/compass/sass/_receipt.scss */
+.receipt {
+  margin-top: 40px;
+}
+/* line 3, ../../tools/compass/sass/_receipt.scss */
+.receipt .button-holder {
+  margin-top: 10px;
+}

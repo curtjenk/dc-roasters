@@ -1,4 +1,4 @@
-coffeeApp.controller('receiptController', function($scope, $http, $location, $cookies, $route) {
+coffeeApp.controller('receiptController', function($scope, $http, $location, $cookies, $route, sharedData) {
 
 
 

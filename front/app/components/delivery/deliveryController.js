@@ -1,11 +1,10 @@
-coffeeApp.controller('deliveryController', function($scope, $http, $location, $cookies, zipLookup, userData2) {
+coffeeApp.controller('deliveryController', function($scope, $http, $location, $cookies, zipLookup, sharedData, userData2) {
     console.log("in deliveryController");
     //set delivery indicator to active
 		$("#step-options").removeClass('active');
 		$("#step-delivery").addClass('active');
     $('#step-checkout').removeClass('active');
 
-	  var apiUrl = "http://localhost:3200";
     $scope.dlvrStateOptions = states;
     $scope.deliveryMessage = "";
     $scope.dlvrCity = "";
@@ -80,7 +79,7 @@ coffeeApp.controller('deliveryController', function($scope, $http, $location, $c
 
     $scope.deliveryFunc = function() {
 
-        $http.post(apiUrl + '/delivery', {
+        $http.post(sharedData.apiUrl + '/delivery', {
             fullname: $scope.dlvrName,
             addressOne: $scope.dlvrAddr1,
             addressTwo: $scope.dlvrAddr2,

@@ -1,4 +1,4 @@
-coffeeApp.controller('logoutController', function($rootScope, $scope, $cookies){
+coffeeApp.controller('logoutController', function($rootScope, $scope, $cookies, sharedData){
 	$scope.errorMessage = "";
 	$cookies.remove("token");
 	$cookies.remove("username");

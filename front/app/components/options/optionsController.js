@@ -1,5 +1,5 @@
-coffeeApp.controller('optionsController', function($scope, $http, $location, $route, $cookies, userData2) {
-    var apiUrl = "http://localhost:3200";
+coffeeApp.controller('optionsController', function($scope, $http, $location, $route, $cookies, sharedData, userData2) {
+
     $scope.errorMessage = "";
     //ensure user is logged in to access this page;
     var token = $cookies.get('token');
@@ -51,7 +51,7 @@ coffeeApp.controller('optionsController', function($scope, $http, $location, $ro
         option: "French Press"
     }];
 
-    // $http.get(apiUrl + '/getUserData?token=' + $cookies.get('token')).then(
+    // $http.get(sharedData.apiUrl + '/getUserData?token=' + $cookies.get('token')).then(
     //     function(response) {
     //         console.log(response);
     //         if (response.data.success === false) {
@@ -85,7 +85,7 @@ coffeeApp.controller('optionsController', function($scope, $http, $location, $ro
             selectedQuantity = $scope.quantity;
             selectedFrequency = $scope.frequency.option;
         }
-        $http.post(apiUrl + '/options', {
+        $http.post(sharedData.apiUrl + '/options', {
             quantity: selectedQuantity,
             grind: selectedGrind,
             frequency: selectedFrequency,

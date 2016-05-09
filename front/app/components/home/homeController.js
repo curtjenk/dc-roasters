@@ -1,3 +1,3 @@
-coffeeApp.controller('homeController', function($scope, $http, $location, $route) {
-  
+coffeeApp.controller('homeController', function($scope, $http, $location, $route, sharedData) {
+
 });

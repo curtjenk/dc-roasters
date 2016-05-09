@@ -1,8 +1,6 @@
-coffeeApp.controller('loginController', function($rootScope, $scope, $http, $location, $route, $cookies) {
+coffeeApp.controller('loginController', function($rootScope, $scope, $http, $location, $route, $cookies, sharedData) {
     console.log("in loginController");
 
-
-    var apiUrl = "http://localhost:3200";
     $scope.loginMessage = "";
     //
     // if (($location.path() == '/login')) {
@@ -27,7 +25,7 @@ coffeeApp.controller('loginController', function($rootScope, $scope, $http, $loc
             $scope.loginMessage = "please enter a username and password";
             return;
         }
-        var loginUrl = apiUrl + "/loginApi";
+        var loginUrl = sharedData.apiUrl + "/loginApi";
         var loginData = {
             username: $scope.loginUsername,
             password: $scope.loginPassword
