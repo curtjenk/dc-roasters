@@ -20,6 +20,7 @@ DC Roasters uses a number of open source projects to work properly:
 * [jQuery] - duh
 * [Mongo] - noSql data store
 * [Mongoose] - object modeling for node.js
+* [Stripe] - for credit card processing
 
 ### Installation
   - cd to the "front" directory
@@ -53,3 +54,4 @@ MIT
    [express]: <http://expressjs.com>
    [AngularJS]: <http://angularjs.org>
    [jQuery]: <http://jquery.com>
+   [Stripe]: <http://stripe.com>

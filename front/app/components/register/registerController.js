@@ -1,4 +1,4 @@
-coffeeApp.controller('registerController', function($scope, $http, $location, $cookies, $route) {
+coffeeApp.controller('registerController', function($scope, $http, $location, $cookies, $route, sharedData) {
 
     $scope.registerFunc = function() {
         console.log("here");
