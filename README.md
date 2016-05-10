@@ -30,14 +30,15 @@ DC Roasters uses a number of open source projects to work properly:
     * run npm install
     * Note: uses port 3200
 
-### Development
+### Demo
+
+http://curtisjenkins.net:8200
 
 ### Todos
  - Write Tests
  - help
 
-License
-----
+### License
 
 MIT
 
