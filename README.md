@@ -32,11 +32,10 @@ DC Roasters uses a number of open source projects to work properly:
 
 ### Demo
 
-http://curtisjenkins.net:8200
+http://curtisjenkins.net/dc-roasters
 
 ### Todos
- - Write Tests
- - help
+ 
 
 ### License
 
